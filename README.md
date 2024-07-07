@@ -1,2 +1,2 @@
-# online_store
+# ShopSmart - an ecommerce backend system
 Ecommerce backend
