@@ -1,8 +1,6 @@
 drop database if exists ShopSmart;
 CREATE DATABASE ShopSmart;
 USE ShopSmart;
-DROP TABLE IF EXISTS posts;
-
 CREATE TABLE Admin_(
     admin_id INT AUTO_INCREMENT PRIMARY KEY,
     password VARCHAR(100) NOT NULL CHECK (LENGTH(password) >= 8),
@@ -80,6 +78,7 @@ CREATE TABLE Worker (
     FOREIGN KEY (ofc_id) REFERENCES Order_Fulfillment_Centre(ofc_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+DELIMITER //
 
 CREATE TRIGGER update_worker_count
 AFTER INSERT ON Worker
@@ -90,7 +89,11 @@ BEGIN
     SET no_of_working_staff = no_of_working_staff + 1
     WHERE ofc_id = NEW.ofc_id;
 END;
+//
 
+DELIMITER ;
+
+DELIMITER //
 
 CREATE TRIGGER decrease_worker_count
 AFTER DELETE ON Worker
@@ -101,7 +104,9 @@ BEGIN
     SET no_of_working_staff = no_of_working_staff - 1
     WHERE ofc_id = OLD.ofc_id;
 END;
+//
 
+DELIMITER ;
 
 
 INSERT INTO Worker (worker_id, salary, email, mobile, first_name, last_name, admin_id,ofc_id) 
@@ -179,65 +184,75 @@ CREATE TABLE Product(
 INSERT INTO Product (product_id, name, brand, price,availaiblity_status,category_id, seller_id,rating) 
 VALUES 
 (1, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
+(2, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
+(3, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
+(4, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
+(5, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
+(6, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
+(7, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
+(8, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
+(9, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
+(10, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
 (11, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
 (12, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
 (13, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
 (14, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
+(15, 'Laptop', 'Dell', 999.99, 1, 1, 1,0),
 
-(2, 'T-shirt', 'Nike', 29.99, 1, 2, 2,0),
-(15, 'T-shirt', 'Nike', 29.99, 1, 2, 2,0),
 (16, 'T-shirt', 'Nike', 29.99, 1, 2, 2,0),
 (17, 'T-shirt', 'Nike', 29.99, 1, 2, 2,0),
 (18, 'T-shirt', 'Nike', 29.99, 1, 2, 2,0),
+(19, 'T-shirt', 'Nike', 29.99, 1, 2, 2,0),
+(20, 'T-shirt', 'Nike', 29.99, 1, 2, 2,0),
 
-(3, 'Cookware Set', 'Prestige', 49.99, 1, 3, 3,0),
-(19, 'Cookware Set', 'Prestige', 49.99, 1, 3, 3,0),
-(20, 'Cookware Set', 'Prestige', 49.99, 1, 3, 3,0),
 (21, 'Cookware Set', 'Prestige', 49.99, 1, 3, 3,0),
 (22, 'Cookware Set', 'Prestige', 49.99, 1, 3, 3,0),
+(23, 'Cookware Set', 'Prestige', 49.99, 1, 3, 3,0),
+(24, 'Cookware Set', 'Prestige', 49.99, 1, 3, 3,0),
+(25, 'Cookware Set', 'Prestige', 49.99, 1, 3, 3,0),
 
-(4, 'Novel', 'Penguin', 12.99, 1, 4, 4,0),
-(23, 'Novel', 'Penguin', 12.99, 1, 4, 4,0),
-(24, 'Novel', 'Penguin', 12.99, 1, 4, 4,0),
-(25, 'Novel', 'Penguin', 12.99, 1, 4, 4,0),
 (26, 'Novel', 'Penguin', 12.99, 1, 4, 4,0),
+(27, 'Novel', 'Penguin', 12.99, 1, 4, 4,0),
+(28, 'Novel', 'Penguin', 12.99, 1, 4, 4,0),
+(29, 'Novel', 'Penguin', 12.99, 1, 4, 4,0),
+(30, 'Novel', 'Penguin', 12.99, 1, 4, 4,0),
 
 
-(5, 'Yoga Mat', 'Lululemon', 39.99, 1, 5, 5,0),
-(27, 'Yoga Mat', 'Lululemon', 39.99, 1, 5, 5,0),
-(28, 'Yoga Mat', 'Lululemon', 39.99, 1, 5, 5,0),
-(29, 'Yoga Mat', 'Lululemon', 39.99, 1, 5, 5,0),
-(30, 'Yoga Mat', 'Lululemon', 39.99, 1, 5, 5,0),
+(31, 'Yoga Mat', 'Lululemon', 39.99, 1, 5, 5,0),
+(32, 'Yoga Mat', 'Lululemon', 39.99, 1, 5, 5,0),
+(33, 'Yoga Mat', 'Lululemon', 39.99, 1, 5, 5,0),
+(34, 'Yoga Mat', 'Lululemon', 39.99, 1, 5, 5,0),
+(35, 'Yoga Mat', 'Lululemon', 39.99, 1, 5, 5,0),
 
-(6, 'Shampoo', 'Pantene', 9.99, 1, 6, 6,0),
-(31, 'Shampoo', 'Pantene', 9.99, 1, 6, 6,0),
-(32, 'Shampoo', 'Pantene', 9.99, 1, 6, 6,0),
-(33, 'Shampoo', 'Pantene', 9.99, 1, 6, 6,0),
-(34, 'Shampoo', 'Pantene', 9.99, 1, 6, 6,0),
+(36, 'Shampoo', 'Pantene', 9.99, 1, 6, 6,0),
+(37, 'Shampoo', 'Pantene', 9.99, 1, 6, 6,0),
+(38, 'Shampoo', 'Pantene', 9.99, 1, 6, 6,0),
+(39, 'Shampoo', 'Pantene', 9.99, 1, 6, 6,0),
+(40, 'Shampoo', 'Pantene', 9.99, 1, 6, 6,0),
 
-(7, 'Board Game', 'Hasbro', 24.99, 1, 7, 7,0),
-(35, 'Board Game', 'Hasbro', 24.99, 1, 7, 7,0),
-(36, 'Board Game', 'Hasbro', 24.99, 1, 7, 7,0),
-(37, 'Board Game', 'Hasbro', 24.99, 1, 7, 7,0),
-(38, 'Board Game', 'Hasbro', 24.99, 1, 7, 7,0),
+(41, 'Board Game', 'Hasbro', 24.99, 1, 7, 7,0),
+(42, 'Board Game', 'Hasbro', 24.99, 1, 7, 7,0),
+(43, 'Board Game', 'Hasbro', 24.99, 1, 7, 7,0),
+(44, 'Board Game', 'Hasbro', 24.99, 1, 7, 7,0),
+(45, 'Board Game', 'Hasbro', 24.99, 1, 7, 7,0),
 
-(8, 'Vitamin Supplements', 'Nature Made', 19.99, 1, 8, 8,0),
-(39, 'Vitamin Supplements', 'Nature Made', 19.99, 1, 8, 8,0),
-(40, 'Vitamin Supplements', 'Nature Made', 19.99, 1, 8, 8,0),
-(41, 'Vitamin Supplements', 'Nature Made', 19.99, 1, 8, 8,0),
-(42, 'Vitamin Supplements', 'Nature Made', 19.99, 1, 8, 8,0),
+(46, 'Vitamin Supplements', 'Nature Made', 19.99, 1, 8, 8,0),
+(47, 'Vitamin Supplements', 'Nature Made', 19.99, 1, 8, 8,0),
+(48, 'Vitamin Supplements', 'Nature Made', 19.99, 1, 8, 8,0),
+(49, 'Vitamin Supplements', 'Nature Made', 19.99, 1, 8, 8,0),
+(50, 'Vitamin Supplements', 'Nature Made', 19.99, 1, 8, 8,0),
 
-(9, 'Car Accessories Kit', 'Meguiars', 59.99, 1, 9, 9,0),
-(43, 'Car Accessories Kit', 'Meguiars', 59.99, 1, 9, 9,0),
-(44, 'Car Accessories Kit', 'Meguiars', 59.99, 1, 9, 9,0),
-(45, 'Car Accessories Kit', 'Meguiars', 59.99, 1, 9, 9,0),
-(46, 'Car Accessories Kit', 'Meguiars', 59.99, 1, 9, 9,0),
+(51, 'Car Accessories Kit', 'Meguiars', 59.99, 1, 9, 9,0),
+(52, 'Car Accessories Kit', 'Meguiars', 59.99, 1, 9, 9,0),
+(53, 'Car Accessories Kit', 'Meguiars', 59.99, 1, 9, 9,0),
+(54, 'Car Accessories Kit', 'Meguiars', 59.99, 1, 9, 9,0),
+(55, 'Car Accessories Kit', 'Meguiars', 59.99, 1, 9, 9,0),
 
-(10, 'Power Drill', 'Bosch', 79.99, 1, 10, 10,0),
-(47, 'Power Drill', 'Bosch', 79.99, 1, 10, 10,0),
-(48, 'Power Drill', 'Bosch', 79.99, 1, 10, 10,0),
-(49, 'Power Drill', 'Bosch', 79.99, 1, 10, 10,0),
-(50, 'Power Drill', 'Bosch', 79.99, 1, 10, 10,0);
+(56, 'Power Drill', 'Bosch', 79.99, 1, 10, 10,0),
+(57, 'Power Drill', 'Bosch', 79.99, 1, 10, 10,0),
+(58, 'Power Drill', 'Bosch', 79.99, 1, 10, 10,0),
+(59, 'Power Drill', 'Bosch', 79.99, 1, 10, 10,0),
+(60, 'Power Drill', 'Bosch', 79.99, 1, 10, 10,0);
 
 
 CREATE TABLE IF NOT EXISTS Special_Offers (
@@ -354,17 +369,14 @@ VALUES
 CREATE TABLE Contains_Products(
     cart_id INT,
     product_id INT,
+    quantity INT,
     PRIMARY KEY (cart_id, product_id),
     FOREIGN KEY (cart_id) REFERENCES Cart(cart_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (product_id) REFERENCES Product(product_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO Contains_Products (cart_id, product_id) VALUES
-(1, 10),(1, 5),
-(2, 9),
-(3, 19),
-(4,21),(4,22),
-(5,50),(5,45),(5,46),
+(1, 10),(1, 5),(2, 9),(3, 19),(4,21),(4,22),(5,50),(5,45),(5,46),
 (6,35),(6,36),(6,27),
 (7,2),(7,43),(7,44),
 (8,47),(8,48),(8,49),(8,30),
@@ -392,19 +404,18 @@ INSERT INTO adds_seller (admin_id, seller_id) VALUES
 (3, 9),
 (4,10);
 
-CREATE TABLE views_orders (
+CREATE TABLE manages_orders (
     admin_id INT,
     order_id INT,
-    total_orders INT NOT NULL DEFAULT 0,
     PRIMARY KEY (admin_id, order_id),
     FOREIGN KEY (admin_id) REFERENCES Admin_(admin_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (order_id) REFERENCES Order_(order_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO views_orders (admin_id, order_id, total_orders) VALUES
-(1, 1, 5),
-(2, 2, 3),
-(3, 3, 7);
+INSERT INTO manages_orders (admin_id, order_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3);
 
 
 CREATE TABLE Stores(
@@ -439,6 +450,8 @@ CREATE TABLE Product_Feedback(
     FOREIGN KEY (product_id) REFERENCES Product(product_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+DELIMITER //
+
 CREATE TRIGGER update_product_rating
 AFTER INSERT ON Product_Feedback
 FOR EACH ROW
@@ -469,7 +482,9 @@ BEGIN
     SET rating = avg_rating
     WHERE product_id = NEW.product_id;
 END;
+//
 
+DELIMITER ;
 
 INSERT INTO Product_Feedback (review_id, body, dt, rating, customer_id, product_id) VALUES
 (1, 'Great laptop, fast delivery!', '2024-02-10', 4, 101, 1),
@@ -507,56 +522,17 @@ CREATE TABLE sells(
     FOREIGN KEY (product_id) REFERENCES Product(product_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO sells (seller_id, product_id, products_sold) VALUES
-(1, 1, 100), 
-(4, 2, 150), 
-(1, 3, 80),  
-(7, 4, 200), 
-(2, 5, 120), 
-(8, 6, 90),  
-(3, 7, 300), 
-(3, 8, 250), 
-(6, 9, 180), 
-(5, 10, 69),
-(1, 11, 22),
-(1, 12, 23),
-(1, 13, 24),
-(1, 14, 55),
-(1, 15, 77),
-(2, 16, 52),
-(2, 17, 44),
-(2, 18, 99),
-(2, 19, 111),
-(2, 20, 420),
-(3, 21, 852),
-(3, 22, 746),
-(3, 23, 746),
-(3, 24, 963),
-(3, 25, 1),
-(4, 26, 33),
-(4, 27, 44),
-(4, 28, 99),
-(4, 29, 14),
-(4, 30, 33),
-(5, 31, 445),
-(5, 32, 710),
-(5, 33, 963),
-(5, 34, 136),
-(5, 35, 433),
-(6, 36, 555),
-(6, 37, 441),
-(6, 38, 777),
-(6, 39, 666),
-(6, 40, 69),
-(7, 41, 93),
-(7, 42, 62),
-(7, 43, 2),
-(7, 44, 42),
-(7, 45, 96),
-(8, 46, 9),
-(8, 47, 64),
-(8, 48, 32),
-(8, 49, 54),
-(8, 50, 765);
+(1, 15, 15), 
+(4, 20, 5), 
+(1, 25, 5),  
+(7, 30, 5), 
+(2, 35, 5), 
+(8, 40, 5),  
+(3, 45, 5), 
+(3, 50, 5),
+(9,55,5),
+(10,60,5);
+
 
 CREATE TABLE IF NOT EXISTS Store_Feedback (
     SR_id INT NOT NULL,
