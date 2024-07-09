@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Add Delivery Boy{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>Add Delivery Boy</h3>
+    <form method="POST" action="{{ url_for('add_delivery_boy') }}">
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="mobile_number" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="mobile_number" name="mobile_number" required>
+        </div>
+        <div class="mb-3">
+            <label for="email_id" class="form-label">Email ID</label>
+            <input type="email" class="form-control" id="email_id" name="email_id" required>
+        </div>
+        <div class="mb-3">
+            <label for="rating" class="form-label">Rating</label>
+            <input type="number" class="form-control" id="rating" name="rating" min="0" max="5" step="0.1" required>
+        </div>
+        <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" class="form-control" id="salary" name="salary" min="0" step="1000" required>
+        </div>
+        <div class="mb-3">
+            <label for="ofc_id" class="form-label">Office Location</label>
+            <select class="form-select" id="ofc_id" name="ofc_id" required>
+                <option value="">Select Office Location</option>
+                {% for office in offices %}
+                <option value="{{ office.ofc_id }}">{{ office.location }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Delivery Boy</button>
+    </form>
+</div>
+{% endblock %}
+
+

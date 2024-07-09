@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Remove Seller{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>Remove Seller</h3>
+    <form method="POST" action="{{ url_for('remove_seller') }}">
+        <div class="mb-3">
+            <label for="seller_id" class="form-label">Select Seller to Remove:</label>
+            <select class="form-select" id="seller_id" name="seller_id" required>
+                <option value="">Select Seller</option>
+                {% for seller in sellers %}
+                <option value="{{ seller.seller_id }}">{{ seller.first_name }} (ID: {{ seller.seller_id }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-danger">Remove Seller</button>
+    </form>
+</div>
+{% endblock %}
+
+
+

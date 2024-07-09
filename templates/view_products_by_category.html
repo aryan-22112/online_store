@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<style>
+    .card {
+        margin-bottom: 15px;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-body {
+        text-align: center;
+    }
+</style>
+<div class="container mt-4">
+    <h1>Products</h1>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product[1] }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ product[2] }}</h6>
+                    <p class="card-text">Price: ${{ product[3] }}</p>
+                    <p class="card-text">Product_id: {{ product[0] }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+

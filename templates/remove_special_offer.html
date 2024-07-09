@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Remove Special Offer{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>Remove Special Offer</h3>
+    <form method="POST" action="{{ url_for('remove_special_offer') }}">
+        <div class="mb-3">
+            <label for="offer_id" class="form-label">Select Offer Code to Remove:</label>
+            <select class="form-select" id="offer_id" name="offer_id" required>
+                <option value="">Select Offer Code</option>
+                {% for offer in offers %}
+                <option value="{{ offer.offer_id }}">{{ offer.offer_code }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-danger">Remove Special Offer</button>
+    </form>
+</div>
+{% endblock %}
+
+
+

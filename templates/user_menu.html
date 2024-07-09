@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+<style>
+    .button {
+        background-color: rgb(239, 226, 226);
+        color: rgb(2, 8, 14);
+        border-style: solid;
+        border-color: rgb(222, 212, 212);
+        border-width: 1px;
+        cursor: pointer;
+        transition: background-color 0.15s, color 0.15s;
+        border-radius: 30px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .button:hover {
+        background-color: rgb(11, 99, 206);
+        color: white;
+    }
+    .button:active {
+        opacity: 0.7;
+    }
+    .image_cart {
+        height: 250px;
+        width: 450px;
+        border-radius: 75px;
+        border: none;
+    }
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 25px;
+    }
+    .login-form {
+        height:150px;
+        width: 300px; /* Adjust width as needed */
+    }
+</style>
+
+<div class="container mt-4">
+    <h3>Categories</h3>
+    <div class="list-group">
+        {% for category in categories %}
+        <a href="{{ url_for('view_products_by_category', category_id=category[0]) }}" class="list-group-item list-group-item-action">
+            {{ category[1] }}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+

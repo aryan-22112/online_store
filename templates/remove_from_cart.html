@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Remove from Cart{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Remove from Cart</h1>
+    <form method="POST" action="{{ url_for('remove_from_cart') }}">
+        <div class="form-group">
+            <label for="product_id">Product ID:</label>
+            <input type="text" class="form-control" id="product_id" name="product_id" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Remove from Cart</button>
+    </form>
+</div>
+{% endblock %}
