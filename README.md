@@ -53,7 +53,7 @@ This project is an eCommerce backend system developed using Python, Flask, MySQL
 2. Open your web browser and navigate to `http://127.0.0.1:5000`.
 
 ## Assumptions In The Project
-1. We assumed that all orders will go through the cart and every order will unique cart ID be associated with unique cart ID and only one single customer. Also every customer will have one cart at a time to place order.
+1. We assumed that all orders will go through the cart and every order will have a unique cart ID and a single customer associated with it. Also every customer will have one cart at a time to place order.
 2. There are multiple admins and every admin has the power to add products,category and sellers.
 3. To view cart and add products to cart,you first need to login as a user.
 4. Each product belongs to a particular category and is sold by a particular seller.
