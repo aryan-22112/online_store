@@ -44,13 +44,12 @@ This project is an eCommerce backend system developed using Python, Flask, MySQL
 5. Configure the application:
     - Update the `db_config` in `app.py` with your MySQL database credentials.
 
-## Running the Application
-1. Run the Flask application:
+6. Running the Application
+    1. Run the Flask application:
     ```sh
     flask run
     ```
-
-2. Open your web browser and navigate to `http://127.0.0.1:5000`.
+    2. Open your web browser and navigate to `http://127.0.0.1:5000`.
 
 ## Assumptions In The Project
 1. We assumed that all orders will go through the cart and every order will have a unique cart ID and a single customer associated with it. Also every customer will have one cart at a time to place order.
