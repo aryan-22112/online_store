@@ -1,11 +1,10 @@
-# ShopSmart - an ecommerce backend system
+# ShopSmart - An Ecommerce system.
 
 ## Description
 This project is an eCommerce backend system developed using Python, Flask, MySQL, HTML, and CSS. It provides functionalities such as user registration, product management, cart operations, special offers, and order fulfillment. The system is designed to be a robust backend solution for managing an online store.
 
 ## Features
 - User registration and authentication
-- Admin and Seller authentication
 - Product management
 - Cart operations
 - Special offers management
